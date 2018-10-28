@@ -1,0 +1,9 @@
+{
+  "defaultEnv": "local",
+  "local": {
+    "username": "username",
+    "password": "password",
+    "driver": "mysql",
+    "database": "jedzenie"
+  }
+}
