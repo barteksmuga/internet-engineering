@@ -1,9 +1,11 @@
-var userRouter = require('./User/routes');
-var ingredientRouter = require('./Ingredient/routes');
-var recipeRouter = require('./Recipe/routes');
+const userRouter = require('./User/routes');
+const ingredientRouter = require('./Ingredient/routes');
+const categoryRouter = require('./Category/routes');
+const recipeRouter = require('./Recipe/routes');
 
 module.exports = {
     '/users': userRouter,
     '/ingredients': ingredientRouter,
+    '/categories': categoryRouter,
     '/recipes': recipeRouter
 };
