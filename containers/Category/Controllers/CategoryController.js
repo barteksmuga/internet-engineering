@@ -3,7 +3,7 @@ let SqlFormatter = require('../../../helpers/SqlFormatter');
 
 function getList (req, res) {
     console.log('getList');
-    db.query('SELECT * FROM ingredients', function (err, rows, fields) {
+    db.query('SELECT * FROM categories', function (err, rows, fields) {
         if (err) {
             throw err;
         }
@@ -12,7 +12,7 @@ function getList (req, res) {
 }
 
 function get (req, res) {
-    let sql = new SqlFormatter('SELECT * FROM ingredients WHERE id = :id');
+    let sql = new SqlFormatter('SELECT * FROM categories WHERE id = :id');
     console.log(sql.fill(req.params));
     db.query(sql.fill(req.params), req.params.id, function (err, rows, fields) {
         if (err) {
@@ -23,7 +23,7 @@ function get (req, res) {
 }
 
 function create (req, res) {
-    let sql = new SqlFormatter('INSERT INTO ingredients (name) VALUES (:name)');
+    let sql = new SqlFormatter('INSERT INTO categories (name) VALUES (:name)');
     db.query(sql.fill(req.body), function (err, rows, fields) {
         if (err) {
             throw err;
@@ -34,7 +34,7 @@ function create (req, res) {
 
 function update (req, res) {
     let parameters = Object.assign({}, req.params, req.body);
-    let sql = new SqlFormatter('UPDATE ingredients SET name = :name WHERE id = :id');
+    let sql = new SqlFormatter('UPDATE categories SET name = :name WHERE id = :id');
     db.query(sql.fill(parameters), function (err, rows, fields) {
         if (err) {
             throw err;
@@ -44,7 +44,7 @@ function update (req, res) {
 }
 
 function remove (req, res) {
-    let sql = new SqlFormatter('DELETE FROM ingredients WHERE id = :id');
+    let sql = new SqlFormatter('DELETE FROM categories WHERE id = :id');
     console.log(sql.fill(req.params));
     db.query(sql.fill(req.params), function (err, rows, fields) {
         if (err) {
