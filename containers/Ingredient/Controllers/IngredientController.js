@@ -13,7 +13,6 @@ function getList (req, res) {
 
 function get (req, res) {
     let sql = new SqlFormatter('SELECT * FROM ingredients WHERE id = :id');
-    console.log(sql.fill(req.params));
     db.query(sql.fill(req.params), req.params.id, function (err, rows, fields) {
         if (err) {
             throw err;
@@ -45,7 +44,6 @@ function update (req, res) {
 
 function remove (req, res) {
     let sql = new SqlFormatter('DELETE FROM ingredients WHERE id = :id');
-    console.log(sql.fill(req.params));
     db.query(sql.fill(req.params), function (err, rows, fields) {
         if (err) {
             throw err;
