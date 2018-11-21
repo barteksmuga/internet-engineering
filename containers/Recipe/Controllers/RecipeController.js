@@ -1,13 +1,13 @@
-const Ingredient = require('../Models/Ingredient');
+const Recipe = require('../Models/Recipe');
 
 function getList (req, res) {
-    Ingredient.findAll({
+    Recipe.findAll({
         where: req.query
     }).then(data => res.status(200).send(data));
 }
 
 function get (req, res) {
-    Ingredient.findOne({
+    Recipe.findOne({
         where: req.params
     }).then(model => {
         if (model) {
@@ -19,11 +19,11 @@ function get (req, res) {
 }
 
 function create (req, res) {
-    Ingredient.create(req.body).then(model => res.status(201).send(model));
+    Recipe.create(req.body).then(model => res.status(201).send(model));
 }
 
 function update (req, res) {
-    Ingredient.update(req.body, {
+    Recipe.update(req.body, {
         where: {
             id: req.params.id
         }
@@ -37,7 +37,7 @@ function update (req, res) {
 }
 
 function remove (req, res) {
-    Ingredient.destroy({
+    Recipe.destroy({
         where: {
             id: req.params.id
         }
