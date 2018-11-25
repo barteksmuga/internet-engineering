@@ -14,6 +14,10 @@ const User = seq.define('users', {
         email: {
             allowNull: false,
             type: seq.Sequelize.STRING
+        },
+        password: {
+            allowNull: false,
+            type:seq.Sequelize.STRING
         }
     }
 );
