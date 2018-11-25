@@ -1,5 +1,6 @@
 class Response {
     static success (response, data, status) {
+        console.log(status || 200);
         response.status(status || 200).send(data);
     }
 

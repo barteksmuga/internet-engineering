@@ -10,16 +10,16 @@ class Action {
     }
 
     /**
-     * @returns {Promise<~__proceed, Exception>}
+     * @returns {Promise<~__process, Exception>}
      */
     run () {
         return new Promise((resolve, reject) => {
             try {
-                let result = this.__proceed(this.transferObject);
+                let result = this.__process(this.transferObject);
                 if (result instanceof Promise) {
-                    result.then(data => {
-                        resolve(data);
-                    });
+                    result
+                        .then(data => resolve(data))
+                        .catch(data => reject(data));
                     return;
                 }
                 resolve(result);
@@ -29,7 +29,10 @@ class Action {
         });
     }
 
-    __proceed (transferObject) {}
+    /**
+     * @private
+     */
+    __process (transferObject) {}
 }
 
 module.exports = Action;

@@ -63,5 +63,3 @@ typings/
 .DS_Store
 .idea/*
 .idea
-db.js
-database.json

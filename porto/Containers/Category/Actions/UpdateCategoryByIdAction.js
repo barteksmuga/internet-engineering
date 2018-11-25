@@ -7,8 +7,9 @@ class UpdateCategoryByIdAction extends Action {
     /**
      * @param {UpdateCategoryByIdTransferObject} transferObject
      * @return {Promise<Category>}
+     * @private
      */
-    __proceed (transferObject) {
+    __process (transferObject) {
         let params = Object.assign({}, transferObject.dataSet);
         delete(params.id);
         Category.update(params, {

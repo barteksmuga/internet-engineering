@@ -7,8 +7,9 @@ class GetCategoryByIdAction extends Action {
     /**
      * @param {GetCategoryByIdTransferObject} transferObject
      * @return {Promise<Category>}
+     * @private
      */
-    __proceed (transferObject) {
+    __process (transferObject) {
         return Category.findOne({
             where: transferObject.dataSet
         }).then(model => {

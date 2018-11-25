@@ -6,8 +6,9 @@ class GetCategoryListAction extends Action {
     /**
      * @param {GetCategoryListTransferObject} transferObject
      * @return {Promise<array>}
+     * @private
      */
-    __proceed (transferObject) {
+    __process (transferObject) {
         return Category.findAll({
             where: transferObject.dataSet
         });

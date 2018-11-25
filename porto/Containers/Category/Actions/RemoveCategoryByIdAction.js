@@ -7,8 +7,9 @@ class RemoveCategoryByIdAction extends Action {
     /**
      * @param {RemoveCategoryByIdTransferObject} transferObject
      * @return {Promise<Category>}
+     * @private
      */
-    __proceed (transferObject) {
+    __process (transferObject) {
         Category.destroy({
             where: {
                 id: transferObject.get('id')

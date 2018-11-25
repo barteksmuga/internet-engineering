@@ -6,8 +6,9 @@ class CreateCategoryAction extends Action {
     /**
      * @param {CreateCategoryTransferObject} transferObject
      * @return {Promise<Category>}
+     * @private
      */
-    __proceed (transferObject) {
+    __process (transferObject) {
         return Category.create(transferObject.dataSet);
     }
 }
