@@ -77,18 +77,18 @@ class CategoryController extends Controller {
             },
             create: {
                 route: '/',
-                method: 'GET',
+                method: 'POST',
                 requestValidator: RequestValidator,
                 middlewares: []
             },
             update: {
                 route: '/:id',
-                method: 'GET',
+                method: 'PUT',
                 requestValidator: RequestValidator,
             },
             remove: {
                 route: '/:id',
-                method: 'GET',
+                method: 'DELETE',
                 requestValidator: RequestValidator,
             },
         };
