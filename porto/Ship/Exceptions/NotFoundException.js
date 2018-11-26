@@ -1,7 +1,9 @@
 const Exception = require('../Abstracts/Exception');
 
 class NotFoundException extends Exception {
-    constructor (errorKey, status) {
-        super('resourceNotFound', 404);
+    constructor (errorKey, status, payload) {
+        super(errorKey || 'resourceNotFound', status || 404, payload);
     }
 }
+
+module.exports = NotFoundException;

@@ -10,7 +10,7 @@ class RemoveCategoryByIdAction extends Action {
      * @private
      */
     __process (transferObject) {
-        Category.destroy({
+        return Category.destroy({
             where: {
                 id: transferObject.get('id')
             }

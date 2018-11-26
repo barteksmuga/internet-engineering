@@ -1,13 +1,20 @@
 const Controller = require('../../../Ship/Abstracts/Controller');
 const Response = require('../../../Ship/Response/Response');
-const RequestValidator = require('../../../Ship/Abstracts/RequestValidator');
 const GetCategoryListAction = require('../Actions/GetCategoryListAction');
 const GetCategoryListTransferObject = require('../TransferObjects/GetCategoryListTransferObject');
 const GetCategoryByIdAction = require('../Actions/GetCategoryByIdAction');
+const UpdateCategoryByIdAction = require('../Actions/UpdateCategoryByIdAction');
+const RemoveCategoryByIdAction = require('../Actions/RemoveCategoryByIdAction');
 const GetCategoryByIdTransferObject = require('../TransferObjects/GetCategoryByIdTransferObject');
 const GetCategoryByIdRequestValidator = require('../RequestValidators/GetCategoryByIdRequestValidator');
+const GetCategoryListRequestValidator = require('../RequestValidators/GetCategoryListRequestValidator');
+const CreateCategoryRequestValidator = require('../RequestValidators/CreateCategoryRequestValidator');
+const UpdateCategoryByIdRequestValidator = require('../RequestValidators/UpdateCategoryByIdRequestValidator');
+const RemoveCategoryRequestValidator = require('../RequestValidators/RemoveCategoryRequestValidator');
 const CreateCategoryAction = require('../Actions/CreateCategoryAction');
 const CreateCategoryTransferObject = require('../TransferObjects/CreateCategoryTransferObject');
+const UpdateCategoryByIdTransferObject = require('../TransferObjects/UpdateCategoryByIdTransferObject');
+const RemoveCategoryByIdTransferObject = require('../TransferObjects/RemoveCategoryByIdTransferObject');
 const TestMiddleware = require('../Middlewares/Test');
 
 class CategoryController extends Controller {
@@ -42,8 +49,8 @@ class CategoryController extends Controller {
     }
 
     static update (req, res) {
-        let transferObject = new GetCategoryByIdTransferObject(req.validatedParams);
-        let action = new GetCategoryByIdAction(transferObject);
+        let transferObject = new UpdateCategoryByIdTransferObject(req.validatedParams);
+        let action = new UpdateCategoryByIdAction(transferObject);
         action.run().then(() => {
             Response.success(res, null, 204);
         }).catch(exception => {
@@ -52,8 +59,8 @@ class CategoryController extends Controller {
     }
 
     static remove (req, res) {
-        let transferObject = new GetCategoryByIdTransferObject(req.validatedParams);
-        let action = new GetCategoryByIdAction(transferObject);
+        let transferObject = new RemoveCategoryByIdTransferObject(req.validatedParams);
+        let action = new RemoveCategoryByIdAction(transferObject);
         action.run().then(() => {
             Response.success(res, null, 204);
         }).catch(exception => {
@@ -66,7 +73,7 @@ class CategoryController extends Controller {
             getList: {
                 route: '/',
                 method: 'GET',
-                requestValidator: RequestValidator, //todo: change validator
+                requestValidator: GetCategoryListRequestValidator,
                 middlewares: []
             },
             get: {
@@ -78,18 +85,18 @@ class CategoryController extends Controller {
             create: {
                 route: '/',
                 method: 'POST',
-                requestValidator: RequestValidator,
+                requestValidator: CreateCategoryRequestValidator,
                 middlewares: []
             },
             update: {
                 route: '/:id',
                 method: 'PUT',
-                requestValidator: RequestValidator,
+                requestValidator: UpdateCategoryByIdRequestValidator,
             },
             remove: {
                 route: '/:id',
                 method: 'DELETE',
-                requestValidator: RequestValidator,
+                requestValidator: RemoveCategoryRequestValidator,
             },
         };
     }

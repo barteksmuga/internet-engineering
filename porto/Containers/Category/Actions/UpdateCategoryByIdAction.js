@@ -11,8 +11,8 @@ class UpdateCategoryByIdAction extends Action {
      */
     __process (transferObject) {
         let params = Object.assign({}, transferObject.dataSet);
-        delete(params.id);
-        Category.update(params, {
+        delete params.id;
+        return Category.update(params, {
             where: {
                 id: transferObject.get('id')
             }

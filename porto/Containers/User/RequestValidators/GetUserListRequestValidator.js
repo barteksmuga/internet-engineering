@@ -1,7 +1,7 @@
 const RequestValidator = require('../../../Ship/Abstracts/RequestValidator');
 const LoggedGuard = require('../../../Ship/Guards/LoggedGuard');
 
-class GetCategoryByIdRequestValidator extends RequestValidator {
+class GetUserListRequestValidator extends RequestValidator {
     get guards () {
         return [
             [
@@ -11,4 +11,4 @@ class GetCategoryByIdRequestValidator extends RequestValidator {
     }
 }
 
-module.exports = GetCategoryByIdRequestValidator;
+module.exports = GetUserListRequestValidator;

@@ -13,7 +13,8 @@ const User = seq.define('users', {
         },
         email: {
             allowNull: false,
-            type: seq.Sequelize.STRING
+            type: seq.Sequelize.STRING,
+            unique: true
         },
         password: {
             allowNull: false,
@@ -21,6 +22,12 @@ const User = seq.define('users', {
         }
     }
 );
+
+User.prototype.toJSON = function () {
+    let result = Object.assign({}, this.get());
+    delete result.password;
+    return result;
+};
 
 User.sync();
 

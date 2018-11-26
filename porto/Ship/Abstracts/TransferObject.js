@@ -7,7 +7,7 @@ class TransferObject {
     }
 
     get (field) {
-        return this.dataSet(field);
+        return this.dataSet[field];
     }
 }
 

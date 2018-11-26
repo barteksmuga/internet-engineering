@@ -1,13 +1,13 @@
 const Controller = require('../../../Ship/Abstracts/Controller');
 const Response = require('../../../Ship/Response/Response');
-const RegisterUserRequestValidator = require('../RequestValidators/RegisterUserRequestValidator');
-const CreateUserAction = require('../Actions/CreateUserAction');
-const CreateUserTransferObject = require('../TransferObjects/CreateUserTransferObject');
+const GetUserListAction = require('../Actions/GetUserListAction');
+const RegisterUserRequestValidator = require('../RequestValidators/GetUserListRequestValidator');
+const GetUserListTransferObject = require('../TransferObjects/GetUserListTransferObject');
 
-class RegisterController extends Controller {
-    static register (request, response) {
-        let transferObject = new CreateUserTransferObject(request.validatedParams);
-        let action = new CreateUserAction(transferObject);
+class UserController extends Controller {
+    static getList (request, response) {
+        let transferObject = new GetUserListTransferObject(request.validatedParams);
+        let action = new GetUserListAction(transferObject);
         action.run().then(data => {
             Response.success(response, data);
         }).catch(exception => {
@@ -17,9 +17,9 @@ class RegisterController extends Controller {
 
     static get routeMap () {
         return {
-            register: {
+            getList: {
                 route: '/',
-                method: 'POST',
+                method: 'GET',
                 requestValidator: RegisterUserRequestValidator,
                 middlewares: []
             },
@@ -31,4 +31,4 @@ class RegisterController extends Controller {
     }
 }
 
-module.exports = RegisterController;
+module.exports = UserController;

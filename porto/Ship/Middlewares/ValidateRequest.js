@@ -14,7 +14,6 @@ class ValidateRequest extends Middleware {
             request.validatedParams = this.validator.getValidatedDataObject();
         } catch (exception) {
             if (exception instanceof Exception) {
-                console.error(exception.errorKey);
                 Response.error(response, exception);
             } else {
                 throw exception;

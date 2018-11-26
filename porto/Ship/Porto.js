@@ -24,7 +24,7 @@ class Porto {
             }
             fs.readdirSync(controllerDirectory).forEach(controllerName => {
                 const ControllerClass = require(path.join(controllerDirectory, controllerName));
-                const router = express.Router();
+                const router = routes[ControllerClass.routePrefix] || express.Router();
                 Object.keys(ControllerClass.routeMap).forEach(action => {
                     let routeDescription = ControllerClass.routeMap[action];
                     let middlewares = routeDescription.middlewares || [];
