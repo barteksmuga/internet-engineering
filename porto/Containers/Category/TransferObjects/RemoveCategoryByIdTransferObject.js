@@ -1,4 +1,4 @@
-const TransferObject = require('../../../Ship/Abstracts/TransferObject');
+import TransferObject from '~/porto/Ship/Abstracts/TransferObject';
 
 /**
  * @property {integer} dataSet.id
@@ -6,4 +6,4 @@ const TransferObject = require('../../../Ship/Abstracts/TransferObject');
 class RemoveCategoryByIdTransferObject extends TransferObject {
 }
 
-module.exports = RemoveCategoryByIdTransferObject;
+export default RemoveCategoryByIdTransferObject;

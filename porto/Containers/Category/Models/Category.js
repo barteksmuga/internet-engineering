@@ -1,4 +1,4 @@
-const seq = require('../../../../helpers/Sequelize');
+import seq from '~/helpers/Sequelize';
 
 const Category = seq.define('categories', {
         id: {
@@ -16,4 +16,4 @@ const Category = seq.define('categories', {
 
 Category.sync();
 
-module.exports = Category;
+export default Category;

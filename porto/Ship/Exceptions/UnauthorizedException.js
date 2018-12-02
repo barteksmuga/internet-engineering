@@ -1,4 +1,4 @@
-const Exception = require('../Abstracts/Exception');
+import Exception from '~/porto/Ship/Abstracts/Exception';
 
 class UnauthorizedException extends Exception {
     constructor (errorKey, status, payload) {
@@ -6,4 +6,4 @@ class UnauthorizedException extends Exception {
     }
 }
 
-module.exports = UnauthorizedException;
+export default UnauthorizedException;

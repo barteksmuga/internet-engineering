@@ -1,8 +1,8 @@
-const config = require('./database');
+import config from '~/config/Database/database';
 const db = config[config.defaultEnv];
-const {Op} = require('sequelize');
+import {Op} from 'sequelize';
 
-module.exports = Object.assign({}, db, {
+export default Object.assign({}, db, {
     operatorsAliases: Op,
     define: {
         timestamps: true,

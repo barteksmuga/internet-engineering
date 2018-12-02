@@ -1,4 +1,4 @@
-const TransferObject = require('../../../Ship/Abstracts/TransferObject');
+import TransferObject from '~/porto/Ship/Abstracts/TransferObject';
 
 /**
  * @property {string} dataSet.email
@@ -7,4 +7,4 @@ const TransferObject = require('../../../Ship/Abstracts/TransferObject');
 class LoginUserTransferObject extends TransferObject {
 }
 
-module.exports = LoginUserTransferObject;
+export default LoginUserTransferObject;

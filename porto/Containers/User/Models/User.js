@@ -1,4 +1,4 @@
-const seq = require('../../../../helpers/Sequelize');
+import seq from '~/helpers/Sequelize';
 
 const User = seq.define('users', {
         id: {
@@ -31,4 +31,4 @@ User.prototype.toJSON = function () {
 
 User.sync();
 
-module.exports = User;
+export default User;

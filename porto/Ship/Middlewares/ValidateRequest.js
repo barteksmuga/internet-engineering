@@ -1,6 +1,6 @@
-const Middleware = require('../Abstracts/Middleware');
-const Exception = require('../Abstracts/Exception');
-const Response = require('../Response/Response');
+import Middleware from '~/porto/Ship/Abstracts/Middleware';
+import Exception from '~/porto/Ship/Abstracts/Exception';
+import Response from '~/porto/Ship/Response/Response';
 
 class ValidateRequest extends Middleware {
     constructor (requestValidatorClass) {
@@ -23,4 +23,4 @@ class ValidateRequest extends Middleware {
     }
 }
 
-module.exports = ValidateRequest;
+export default ValidateRequest;

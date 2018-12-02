@@ -1,5 +1,5 @@
-const RequestValidator = require('../../../Ship/Abstracts/RequestValidator');
-const LoggedGuard = require('../../../Ship/Guards/LoggedGuard');
+import RequestValidator from '~/porto/Ship/Abstracts/RequestValidator';
+import LoggedGuard from '~/porto/Ship/Guards/LoggedGuard';
 
 class GetCategoryListRequestValidator extends RequestValidator {
     get guards () {
@@ -11,4 +11,4 @@ class GetCategoryListRequestValidator extends RequestValidator {
     }
 }
 
-module.exports = GetCategoryListRequestValidator;
+export default GetCategoryListRequestValidator;

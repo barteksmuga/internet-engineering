@@ -1,21 +1,21 @@
-const Controller = require('../../../Ship/Abstracts/Controller');
-const Response = require('../../../Ship/Response/Response');
-const GetCategoryListAction = require('../Actions/GetCategoryListAction');
-const GetCategoryListTransferObject = require('../TransferObjects/GetCategoryListTransferObject');
-const GetCategoryByIdAction = require('../Actions/GetCategoryByIdAction');
-const UpdateCategoryByIdAction = require('../Actions/UpdateCategoryByIdAction');
-const RemoveCategoryByIdAction = require('../Actions/RemoveCategoryByIdAction');
-const GetCategoryByIdTransferObject = require('../TransferObjects/GetCategoryByIdTransferObject');
-const GetCategoryByIdRequestValidator = require('../RequestValidators/GetCategoryByIdRequestValidator');
-const GetCategoryListRequestValidator = require('../RequestValidators/GetCategoryListRequestValidator');
-const CreateCategoryRequestValidator = require('../RequestValidators/CreateCategoryRequestValidator');
-const UpdateCategoryByIdRequestValidator = require('../RequestValidators/UpdateCategoryByIdRequestValidator');
-const RemoveCategoryRequestValidator = require('../RequestValidators/RemoveCategoryRequestValidator');
-const CreateCategoryAction = require('../Actions/CreateCategoryAction');
-const CreateCategoryTransferObject = require('../TransferObjects/CreateCategoryTransferObject');
-const UpdateCategoryByIdTransferObject = require('../TransferObjects/UpdateCategoryByIdTransferObject');
-const RemoveCategoryByIdTransferObject = require('../TransferObjects/RemoveCategoryByIdTransferObject');
-const TestMiddleware = require('../Middlewares/Test');
+import Controller from '~/porto/Ship/Abstracts/Controller';
+import Response from '~/porto/Ship/Response/Response';
+import GetCategoryListAction from '~/porto/Containers/Category/Actions/GetCategoryListAction';
+import GetCategoryListTransferObject from '~/porto/Containers/Category/TransferObjects/GetCategoryListTransferObject';
+import GetCategoryByIdAction from '~/porto/Containers/Category/Actions/GetCategoryByIdAction';
+import UpdateCategoryByIdAction from '~/porto/Containers/Category/Actions/UpdateCategoryByIdAction';
+import RemoveCategoryByIdAction from '~/porto/Containers/Category/Actions/RemoveCategoryByIdAction';
+import GetCategoryByIdTransferObject from '~/porto/Containers/Category/TransferObjects/GetCategoryByIdTransferObject';
+import GetCategoryByIdRequestValidator from '~/porto/Containers/Category/RequestValidators/GetCategoryByIdRequestValidator';
+import GetCategoryListRequestValidator from '~/porto/Containers/Category/RequestValidators/GetCategoryListRequestValidator';
+import CreateCategoryRequestValidator from '~/porto/Containers/Category/RequestValidators/CreateCategoryRequestValidator';
+import UpdateCategoryByIdRequestValidator from '~/porto/Containers/Category/RequestValidators/UpdateCategoryByIdRequestValidator';
+import RemoveCategoryRequestValidator from '~/porto/Containers/Category/RequestValidators/RemoveCategoryRequestValidator';
+import CreateCategoryAction from '~/porto/Containers/Category/Actions/CreateCategoryAction';
+import CreateCategoryTransferObject from '~/porto/Containers/Category/TransferObjects/CreateCategoryTransferObject';
+import UpdateCategoryByIdTransferObject from '~/porto/Containers/Category/TransferObjects/UpdateCategoryByIdTransferObject';
+import RemoveCategoryByIdTransferObject from '~/porto/Containers/Category/TransferObjects/RemoveCategoryByIdTransferObject';
+import TestMiddleware from '~/porto/Containers/Category/Middlewares/Test';
 
 class CategoryController extends Controller {
     static getList (req, res) {
@@ -106,4 +106,4 @@ class CategoryController extends Controller {
     }
 }
 
-module.exports = CategoryController;
+export default CategoryController;

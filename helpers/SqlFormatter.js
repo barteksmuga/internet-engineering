@@ -23,4 +23,4 @@ class SqlFormatter {
     }
 }
 
-module.exports = SqlFormatter;
+export default SqlFormatter;

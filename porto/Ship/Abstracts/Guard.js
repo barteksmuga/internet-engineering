@@ -4,4 +4,4 @@ class Guard {
     }
 }
 
-module.exports = Guard;
+export default Guard;

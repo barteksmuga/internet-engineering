@@ -1,4 +1,4 @@
-const seq = require('../../../../helpers/Sequelize');
+import seq from '~/helpers/Sequelize';
 
 const Recipe = seq.define('recipes', {
         id: {
@@ -24,4 +24,4 @@ const Recipe = seq.define('recipes', {
 
 Recipe.sync();
 
-module.exports = Recipe;
+export default Recipe;

@@ -1,4 +1,4 @@
-const Exception = require('../../../Ship/Abstracts/Exception');
+import Exception from '~/porto/Ship/Abstracts/Exception';
 
 class InvalidCredentialsException extends Exception {
     constructor (errorKey, status, payload) {
@@ -6,4 +6,4 @@ class InvalidCredentialsException extends Exception {
     }
 }
 
-module.exports = InvalidCredentialsException;
+export default InvalidCredentialsException;

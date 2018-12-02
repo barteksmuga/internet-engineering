@@ -1,6 +1,3 @@
-const TransferObject = require('./TransferObject');
-const Exception = require('./Exception');
-
 class Action {
     /**
      * @param {TransferObject} transferObject
@@ -35,4 +32,4 @@ class Action {
     __process (transferObject) {}
 }
 
-module.exports = Action;
+export default Action;

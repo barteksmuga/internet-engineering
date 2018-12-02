@@ -1,8 +1,8 @@
-const Controller = require('../../../Ship/Abstracts/Controller');
-const Response = require('../../../Ship/Response/Response');
-const GetUserListAction = require('../Actions/GetUserListAction');
-const RegisterUserRequestValidator = require('../RequestValidators/GetUserListRequestValidator');
-const GetUserListTransferObject = require('../TransferObjects/GetUserListTransferObject');
+import Controller from '~/porto/Ship/Abstracts/Controller';
+import Response from '~/porto/Ship/Response/Response';
+import GetUserListAction from '~/porto/Containers/User/Actions/GetUserListAction';
+import RegisterUserRequestValidator from '~/porto/Containers/User/RequestValidators/GetUserListRequestValidator';
+import GetUserListTransferObject from '~/porto/Containers/User/TransferObjects/GetUserListTransferObject';
 
 class UserController extends Controller {
     static getList (request, response) {
@@ -31,4 +31,4 @@ class UserController extends Controller {
     }
 }
 
-module.exports = UserController;
+export default UserController;

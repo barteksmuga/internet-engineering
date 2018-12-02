@@ -11,4 +11,4 @@ class TransferObject {
     }
 }
 
-module.exports = TransferObject;
+export default TransferObject;

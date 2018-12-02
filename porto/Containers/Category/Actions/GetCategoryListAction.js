@@ -1,6 +1,6 @@
-const Action = require('../../../Ship/Abstracts/Action');
-const GetCategoryListTransferObject = require('../TransferObjects/GetCategoryListTransferObject');
-const Category = require('../Models/Category');
+import Action from '~/porto/Ship/Abstracts/Action';
+import GetCategoryListTransferObject from '~/porto/Containers/Category/TransferObjects/GetCategoryListTransferObject';
+import Category from '~/porto/Containers/Category/Models/Category';
 
 class GetCategoryListAction extends Action {
     /**
@@ -15,4 +15,4 @@ class GetCategoryListAction extends Action {
     }
 }
 
-module.exports = GetCategoryListAction;
+export default GetCategoryListAction;

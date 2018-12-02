@@ -1,6 +1,6 @@
-const RequestValidator = require('../../../Ship/Abstracts/RequestValidator');
+import RequestValidator from '~/porto/Ship/Abstracts/RequestValidator';
 
 class RegisterUserRequestValidator extends RequestValidator {
 }
 
-module.exports = RegisterUserRequestValidator;
+export default RegisterUserRequestValidator;

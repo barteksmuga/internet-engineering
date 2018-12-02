@@ -1,6 +1,6 @@
-const Sequelize = require('sequelize');
-const config = require('../config/Database/Sequelize');
-const decamelize = require('decamelize');
+import Sequelize from 'sequelize';
+import config from '~/config/Database/Sequelize';
+import decamelize from 'decamelize';
 
 const sequelize = new Sequelize(config);
 
@@ -22,4 +22,4 @@ sequelize.addHook('afterDefine', (model) => {
     }
 });
 
-module.exports = sequelize;
+export default sequelize;

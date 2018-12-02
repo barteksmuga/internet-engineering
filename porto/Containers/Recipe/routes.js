@@ -1,5 +1,5 @@
-var express = require('express');
-var RecipeController = require('./_Controllers/RecipeController');
+import express from 'express';
+import RecipeController from '~/porto/Containers/Recipe/_Controllers/RecipeController';
 var router = express.Router();
 
 router.get('/', RecipeController.getList);

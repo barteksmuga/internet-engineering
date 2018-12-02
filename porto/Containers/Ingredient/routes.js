@@ -1,5 +1,5 @@
-var express = require('express');
-var IngredientController = require('./_Controllers/IngredientController');
+import express from 'express';
+import IngredientController from '~/porto/Containers/Ingredient/_Controllers/IngredientController';
 var router = express.Router();
 
 router.get('/', IngredientController.getList);

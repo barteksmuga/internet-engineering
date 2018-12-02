@@ -1,6 +1,6 @@
-const Action = require('../../../Ship/Abstracts/Action');
-const GetUserListTransferObject = require('../TransferObjects/GetUserListTransferObject');
-const User = require('../Models/User');
+import Action from '~/porto/Ship/Abstracts/Action';
+import GetUserListTransferObject from '~/porto/Containers/User/TransferObjects/GetUserListTransferObject';
+import User from '~/porto/Containers/User/Models/User';
 
 class GetUserListAction extends Action {
     /**
@@ -15,4 +15,4 @@ class GetUserListAction extends Action {
     }
 }
 
-module.exports = GetUserListAction;
+export default GetUserListAction;

@@ -1,5 +1,5 @@
-var express = require('express');
-var UserController = require('./Controllers/UserController');
+import express from 'express';
+import UserController from '~/porto/Containers/User/Controllers/UserController';
 var router = express.Router();
 
 /* GET users listing. */

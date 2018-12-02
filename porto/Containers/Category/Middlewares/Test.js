@@ -1,4 +1,4 @@
-const Middleware = require('../../../Ship/Abstracts/Middleware');
+import Middleware from '~/porto/Ship/Abstracts/Middleware';
 
 class Test extends Middleware {
     handle(request, response, next) {
@@ -7,4 +7,4 @@ class Test extends Middleware {
     }
 }
 
-module.exports = Test;
+export default Test;

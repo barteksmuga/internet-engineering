@@ -1,6 +1,6 @@
-const TransferObject = require('../../../Ship/Abstracts/TransferObject');
+import TransferObject from '~/porto/Ship/Abstracts/TransferObject';
 
 class GetUserListTransferObject extends TransferObject {
 }
 
-module.exports = GetUserListTransferObject;
+export default GetUserListTransferObject;

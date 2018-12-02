@@ -1,4 +1,4 @@
-const Exception = require('../Abstracts/Exception');
+import Exception from '~/porto/Ship/Abstracts/Exception';
 
 class NotFoundException extends Exception {
     constructor (errorKey, status, payload) {
@@ -6,4 +6,4 @@ class NotFoundException extends Exception {
     }
 }
 
-module.exports = NotFoundException;
+export default NotFoundException;

@@ -1,6 +1,6 @@
-const Action = require('../../../Ship/Abstracts/Action');
-const CreateCategoryTransferObject = require('../TransferObjects/CreateCategoryTransferObject');
-const Category = require('../Models/Category');
+import Action from '~/porto/Ship/Abstracts/Action';
+import CreateCategoryTransferObject from '~/porto/Containers/Category/TransferObjects/CreateCategoryTransferObject';
+import Category from '~/porto/Containers/Category/Models/Category';
 
 class CreateCategoryAction extends Action {
     /**
@@ -13,4 +13,4 @@ class CreateCategoryAction extends Action {
     }
 }
 
-module.exports = CreateCategoryAction;
+export default CreateCategoryAction;

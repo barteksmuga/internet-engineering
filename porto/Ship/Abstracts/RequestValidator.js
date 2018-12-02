@@ -1,4 +1,4 @@
-const UnauthorizedException = require('../Exceptions/UnauthorizedException');
+import UnauthorizedException from '~/porto/Ship/Exceptions/UnauthorizedException';
 
 class RequestValidator {
     process (request) {
@@ -39,4 +39,4 @@ class RequestValidator {
     }
 }
 
-module.exports = RequestValidator;
+export default RequestValidator;

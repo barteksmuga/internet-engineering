@@ -1,4 +1,4 @@
-const Ingredient = require('../Models/Ingredient');
+import Ingredient from '~/porto/Containers/Ingredient/Models/Ingredient';
 
 function getList (req, res) {
     Ingredient.findAll({

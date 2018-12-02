@@ -1,4 +1,4 @@
-const TransferObject = require('../../../Ship/Abstracts/TransferObject');
+import TransferObject from '~/porto/Ship/Abstracts/TransferObject';
 
 /**
  * @property {string} dataSet.name
@@ -7,4 +7,4 @@ const TransferObject = require('../../../Ship/Abstracts/TransferObject');
 class CreateUserTransferObject extends TransferObject {
 }
 
-module.exports = CreateUserTransferObject;
+export default CreateUserTransferObject;

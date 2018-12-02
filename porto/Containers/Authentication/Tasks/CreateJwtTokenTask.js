@@ -1,7 +1,8 @@
-const User = require('../../User/Models/User');
-const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const path = require('path');
+import User from '~/porto/Containers/User/Models/User';
+import jwt from 'jsonwebtoken';
+import fs from 'fs';
+import path from 'path';
+import Porto from '~/porto/Ship/Porto';
 
 class CreateJwtTokenTask {
     /**
@@ -9,7 +10,7 @@ class CreateJwtTokenTask {
      */
     run (user) {
         user = user.toJSON();
-        let privateKey = fs.readFileSync(path.resolve(__dirname, '../../../../', '.jwt-private.pem'), 'utf8');
+        let privateKey = fs.readFileSync(path.resolve(Porto.rootDirectory, '.jwt-private.pem'), 'utf8');
         return jwt.sign({data: user}, privateKey, {
             expiresIn: process.env.JWT_LIFESPAN,
             algorithm: process.env.JWT_ALGORITHM
@@ -17,4 +18,4 @@ class CreateJwtTokenTask {
     }
 }
 
-module.exports = CreateJwtTokenTask;
+export default CreateJwtTokenTask;

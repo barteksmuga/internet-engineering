@@ -1,9 +1,9 @@
-const Action = require('../../../Ship/Abstracts/Action');
-const LoginUserTransferObject = require('../TransferObjects/LoginUserTransferObject');
-const InvalidCredentialsException = require('../Exceptions/InvalidCredentialsException');
-const CreateJwtTokenTask = require('../Tasks/CreateJwtTokenTask');
-const User = require('../../User/Models/User');
-const bcrypt = require('bcrypt');
+import Action from '~/porto/Ship/Abstracts/Action';
+import LoginUserTransferObject from '~/porto/Containers/Authentication/TransferObjects/LoginUserTransferObject';
+import InvalidCredentialsException from '~/porto/Containers/Authentication/Exceptions/InvalidCredentialsException';
+import CreateJwtTokenTask from '~/porto/Containers/Authentication/Tasks/CreateJwtTokenTask';
+import User from '~/porto/Containers/User/Models/User';
+import bcrypt from 'bcrypt';
 
 class LoginUserAction extends Action {
     /**
@@ -21,7 +21,7 @@ class LoginUserAction extends Action {
                 return Promise.reject();
             }
             return {
-                user,
+                ...user.toJSON(),
                 token: (new CreateJwtTokenTask()).run(user)
             };
         }).catch(error => {
@@ -30,4 +30,4 @@ class LoginUserAction extends Action {
     }
 }
 
-module.exports = LoginUserAction;
+export default LoginUserAction;

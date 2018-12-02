@@ -1,7 +1,7 @@
-const Action = require('../../../Ship/Abstracts/Action');
-const UpdateCategoryByIdTransferObject = require('../TransferObjects/UpdateCategoryByIdTransferObject');
-const Category = require('../Models/Category');
-const NotFoundException = require('../../../Ship/Exceptions/NotFoundException');
+import Action from '~/porto/Ship/Abstracts/Action';
+import UpdateCategoryByIdTransferObject from '~/porto/Containers/Category/TransferObjects/UpdateCategoryByIdTransferObject';
+import Category from '~/porto/Containers/Category/Models/Category';
+import NotFoundException from '~/porto/Ship/Exceptions/NotFoundException';
 
 class UpdateCategoryByIdAction extends Action {
     /**
@@ -24,4 +24,4 @@ class UpdateCategoryByIdAction extends Action {
     }
 }
 
-module.exports = UpdateCategoryByIdAction;
+export default UpdateCategoryByIdAction;

@@ -1,6 +1,6 @@
-const Action = require('../../../Ship/Abstracts/Action');
-const User = require('../../User/Models/User');
-const bcrypt = require('bcrypt');
+import Action from '~/porto//Ship/Abstracts/Action';
+import User from '~/porto/Containers/User/Models/User';
+import bcrypt from 'bcrypt';
 
 class CreateUserAction extends Action {
     /**
@@ -16,4 +16,4 @@ class CreateUserAction extends Action {
     }
 }
 
-module.exports = CreateUserAction;
+export default CreateUserAction;

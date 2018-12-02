@@ -1,8 +1,8 @@
-const Controller = require('../../../Ship/Abstracts/Controller');
-const Response = require('../../../Ship/Response/Response');
-const RegisterUserRequestValidator = require('../RequestValidators/RegisterUserRequestValidator');
-const CreateUserAction = require('../Actions/CreateUserAction');
-const CreateUserTransferObject = require('../TransferObjects/CreateUserTransferObject');
+import Controller from '~/porto/Ship/Abstracts/Controller';
+import Response from '~/porto/Ship/Response/Response';
+import RegisterUserRequestValidator from '~/porto/Containers/UserAccount/RequestValidators/RegisterUserRequestValidator';
+import CreateUserAction from '~/porto/Containers/UserAccount/Actions/CreateUserAction';
+import CreateUserTransferObject from '~/porto/Containers/UserAccount/TransferObjects/CreateUserTransferObject';
 
 class RegisterController extends Controller {
     static register (request, response) {
@@ -31,4 +31,4 @@ class RegisterController extends Controller {
     }
 }
 
-module.exports = RegisterController;
+export default RegisterController;

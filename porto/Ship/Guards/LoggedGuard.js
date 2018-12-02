@@ -1,11 +1,12 @@
-const Guard = require('../Abstracts/Guard');
-const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const path = require('path');
+import Guard from '~/porto/Ship/Abstracts/Guard';
+import jwt from 'jsonwebtoken';
+import fs from 'fs';
+import path from 'path';
+import Porto from '~/porto/Ship/Porto';
 
 class LoggedGuard extends Guard {
     check (request) {
-        let publicKey = fs.readFileSync(path.resolve(__dirname, '../../..', '.jwt-public.pem'), 'utf8');
+        let publicKey = fs.readFileSync(path.resolve(Porto.rootDirectory, '.jwt-public.pem'), 'utf8');
         let token = request.get('authorization');
         if (!token) {
             return false;
@@ -25,4 +26,4 @@ class LoggedGuard extends Guard {
     }
 }
 
-module.exports = LoggedGuard;
+export default LoggedGuard;

@@ -1,8 +1,8 @@
-const Controller = require('../../../Ship/Abstracts/Controller');
-const Response = require('../../../Ship/Response/Response');
-const LoginUserRequestValidator = require('../RequestValidators/LoginUserRequestValidator');
-const LoginUserAction = require('../Actions/LoginUserAction');
-const LoginUserTransferObject = require('../TransferObjects/LoginUserTransferObject');
+import Controller from '~/porto/Ship/Abstracts/Controller';
+import Response from '~/porto/Ship/Response/Response';
+import LoginUserRequestValidator from '~/porto/Containers/Authentication/RequestValidators/LoginUserRequestValidator';
+import LoginUserAction from '~/porto/Containers/Authentication/Actions/LoginUserAction';
+import LoginUserTransferObject from '~/porto/Containers/Authentication/TransferObjects/LoginUserTransferObject';
 
 class AuthenticationController extends Controller {
     static login (request, response) {
@@ -31,4 +31,4 @@ class AuthenticationController extends Controller {
     }
 }
 
-module.exports = AuthenticationController;
+export default AuthenticationController;

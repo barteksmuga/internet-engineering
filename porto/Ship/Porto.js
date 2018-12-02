@@ -1,14 +1,15 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const ValidateRequestMiddleware = require('./Middlewares/ValidateRequest');
+import fs from 'fs';
+import express from 'express';
+import path from 'path';
+import ValidateRequestMiddleware from '~/porto/Ship/Middlewares/ValidateRequest';
+import appRootPath from 'app-root-path';
 
 class Porto {
     /**
      * @returns {array}
      */
     static getContainerDirectories () {
-        const containerRootDirectory = path.resolve(__dirname, '..', 'Containers');
+        const containerRootDirectory = path.resolve(this.rootDirectory, 'porto', 'Containers');
         return fs.readdirSync(containerRootDirectory).map(containerName => path.join(containerRootDirectory, containerName));
     }
 
@@ -23,7 +24,8 @@ class Porto {
                 return;
             }
             fs.readdirSync(controllerDirectory).forEach(controllerName => {
-                const ControllerClass = require(path.join(controllerDirectory, controllerName));
+                let controllerPath = path.join(controllerDirectory, controllerName);
+                const ControllerClass = require(`${controllerPath}`).default;
                 const router = routes[ControllerClass.routePrefix] || express.Router();
                 Object.keys(ControllerClass.routeMap).forEach(action => {
                     let routeDescription = ControllerClass.routeMap[action];
@@ -45,6 +47,10 @@ class Porto {
         });
         return routes;
     }
+
+    static get rootDirectory () {
+        return appRootPath.path;
+    }
 }
 
-module.exports = Porto;
+export default Porto;

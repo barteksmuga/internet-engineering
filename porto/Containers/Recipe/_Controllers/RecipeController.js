@@ -1,4 +1,4 @@
-const Recipe = require('../Models/Recipe');
+import Recipe from '~/porto/Containers/Recipe/Models/Recipe';
 
 function getList (req, res) {
     Recipe.findAll({

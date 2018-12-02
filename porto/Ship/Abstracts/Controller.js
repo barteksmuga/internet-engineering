@@ -1,5 +1,3 @@
-const Response = require('../Response/Response');
-
 class Controller {
     static get routeMap () {
         return {};
@@ -10,4 +8,4 @@ class Controller {
     }
 }
 
-module.exports = Controller;
+export default Controller;

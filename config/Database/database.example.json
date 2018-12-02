@@ -3,7 +3,8 @@
   "local": {
     "username": "username",
     "password": "password",
-    "driver": "mysql",
-    "database": "jedzenie"
+    "dialect": "mysql",
+    "database": "jedzenie",
+    "host": "localhost"
   }
 }
