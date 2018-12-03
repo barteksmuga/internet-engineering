@@ -1,5 +1,6 @@
 import Action from '~/porto/Ship/Abstracts/Action';
 import Ingredient from "../Models/Ingredient";
+import NotFoundException from "../../../Ship/Exceptions/NotFoundException";
 
 class GetIngredientByIdAction extends Action {
     /**
@@ -10,6 +11,11 @@ class GetIngredientByIdAction extends Action {
     __process (transferObject) {
         return Ingredient.findOne({
             where: transferObject.dataSet
+        }).then(model => {
+            if (model) {
+                return model;
+            }
+            throw new NotFoundException();
         });
     }
 }

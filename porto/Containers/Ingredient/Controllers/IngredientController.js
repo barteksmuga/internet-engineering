@@ -1,9 +1,10 @@
-import Ingredient from '~/porto/Containers/Ingredient/Models/Ingredient';
 import GetIngredientListTransferObject from "../TransferObjects/GetIngredientListTransferObject";
 import GetIngredientListAction from "../Actions/GetIngredientListAction";
 import Controller from "../../../Ship/Abstracts/Controller";
 import GetIngredientByIdTransferObject from "../TransferObjects/GetIngredientByIdTransferObject";
 import GetIngredientByIdAction from "../Actions/GetIngredientByIdAction";
+import CreateIngredientAction from "../Actions/CreateIngredientAction";
+import CreateIngredientTransferObject from "~/porto/Containers/Ingredient/TransferObjects/CreateIngredientTransferObject";
 
 class IngredientController extends Controller {
     static getList (req, res) {
@@ -47,7 +48,7 @@ class IngredientController extends Controller {
     }
 
     static remove (req, res) {
-        let transferObject = new RemoveIngredientByIdTransferObject(req.validatedParams);
+        let transferObject = new RemoveIngredientByIdAction(req.validatedParams);
         let action = new RemoveIngredientByIdAction(transferObject);
         action.run().then(data => {
             Response.success(res, data);
