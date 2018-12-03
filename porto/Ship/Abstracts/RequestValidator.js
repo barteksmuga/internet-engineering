@@ -3,7 +3,7 @@ import UnauthorizedException from '~/porto/Ship/Exceptions/UnauthorizedException
 class RequestValidator {
     process (request) {
         this.request = request;
-        this.validatedParams = Object.assign({}, this.request.query, this.request.params, this.request.body);
+        this.validatedParams = {};
         this.authorize();
         this.validate();
     }
@@ -28,6 +28,20 @@ class RequestValidator {
     }
 
     validate () {
+        if (this.rules.length === 0) {
+            return;
+        }
+        let params = Object.assign({}, this.request.query, this.request.params, this.request.body);
+        Object.entries(this.rules).forEach(([fieldName, rules]) => {
+            rules.forEach(rule => {
+                if (rule.rule) {
+                    this.validateFieldWithCustomException(rule.rule, fieldName, params, rule.exception);
+                } else {
+                    this.validateFieldWithDefaultException(rule, fieldName, params);
+                }
+            });
+            this.validatedParams[fieldName] = params[fieldName];
+        });
     }
 
     getValidatedDataObject () {
@@ -36,6 +50,22 @@ class RequestValidator {
 
     get guards () {
         return [];
+    }
+
+    get rules () {
+        return {};
+    }
+
+    validateFieldWithDefaultException (rule, fieldName, params) {
+        if (!rule.check(fieldName, params)) {
+            throw new rule.defaultException();
+        }
+    }
+
+    validateFieldWithCustomException (rule, fieldName, params, exception) {
+        if (!rule.check(fieldName, params)) {
+            throw new exception.class(exception.message, exception.status || 422, exception.payload || '');
+        }
     }
 }
 
