@@ -5,7 +5,7 @@ class RequestValidator {
         this.request = request;
         this.validatedParams = {};
         this.authorize();
-        this.validate();
+        return this.validate();
     }
 
     authorize () {
@@ -31,20 +31,22 @@ class RequestValidator {
         if (this.rules.length === 0) {
             return;
         }
-        let params = Object.assign({}, this.request.query, this.request.params, this.request.body);
+        let requestParams = Object.assign({}, this.request.query, this.request.params, this.request.body);
+        let promises = [];
         Object.entries(this.rules).forEach(([fieldName, rules]) => {
             rules.forEach(rule => {
                 if (rule.rule) {
-                    this.validateFieldWithCustomException(rule.rule, fieldName, params, rule.exception);
+                    promises.push(this.validateFieldWithCustomException(rule.rule, fieldName, requestParams, rule.exception));
                 } else {
-                    this.validateFieldWithDefaultException(rule, fieldName, params);
+                    promises.push(this.validateFieldWithDefaultException(rule, fieldName, requestParams));
                 }
             });
-            this.validatedParams[fieldName] = params[fieldName];
+            this.validatedParams[fieldName] = requestParams[fieldName];
         });
+        return Promise.all(promises);
     }
 
-    getValidatedDataObject () {
+    get validatedDataObject () {
         return this.validatedParams;
     }
 
@@ -56,16 +58,16 @@ class RequestValidator {
         return {};
     }
 
-    validateFieldWithDefaultException (rule, fieldName, params) {
-        if (!rule.check(fieldName, params)) {
+    validateFieldWithDefaultException (rule, fieldName, requestParams) {
+        return rule.check(fieldName, requestParams).catch(() => {
             throw new rule.defaultException();
-        }
+        });
     }
 
-    validateFieldWithCustomException (rule, fieldName, params, exception) {
-        if (!rule.check(fieldName, params)) {
-            throw new exception.class(exception.message, exception.status || 422, exception.payload || '');
-        }
+    validateFieldWithCustomException (rule, fieldName, requestParams, exceptionData) {
+        return rule.check(fieldName, requestParams).catch(() => {
+            throw new exceptionData.class(exceptionData.message, exceptionData.status || 422, exceptionData.payload || '');
+        });
     }
 }
 

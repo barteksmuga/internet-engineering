@@ -5,6 +5,16 @@ import GetIngredientByIdTransferObject from "../TransferObjects/GetIngredientByI
 import GetIngredientByIdAction from "../Actions/GetIngredientByIdAction";
 import CreateIngredientAction from "../Actions/CreateIngredientAction";
 import CreateIngredientTransferObject from "~/porto/Containers/Ingredient/TransferObjects/CreateIngredientTransferObject";
+import GetIngredientListRequestValidator from "../RequestValidators/GetIngredientListRequestValidator";
+import GetIngredientByIdRequestValidator from "../RequestValidators/GetIngredientByIdRequestValidator";
+import CreateIngredientRequestValidator from "../RequestValidators/CreateIngredientRequestValidator";
+import UpdateIngredientByIdRequestValidator from "../RequestValidators/UpdateIngredientByIdRequestValidator";
+import RemoveIngredientByIdRequestValidator from "../RequestValidators/RemoveIngredientByIdRequestValidator";
+import UpdateIngredientByIdAction from "../Actions/UpdateIngredientByIdAction";
+import UpdateIngredientByIdTransferObject from "../TransferObjects/UpdateIngredientByIdTransferObject";
+import RemoveIngredientByIdTransferObject from "../TransferObjects/RemoveIngredientByIdTransferObject";
+import RemoveIngredientByIdAction from "../Actions/RemoveIngredientByIdAction";
+import Response from '~/porto/Ship/Response/Response';
 
 class IngredientController extends Controller {
     static getList (req, res) {
@@ -48,7 +58,7 @@ class IngredientController extends Controller {
     }
 
     static remove (req, res) {
-        let transferObject = new RemoveIngredientByIdAction(req.validatedParams);
+        let transferObject = new RemoveIngredientByIdTransferObject(req.validatedParams);
         let action = new RemoveIngredientByIdAction(transferObject);
         action.run().then(data => {
             Response.success(res, data);
@@ -74,7 +84,7 @@ class IngredientController extends Controller {
             create: {
                 route: '/',
                 method: 'POST',
-                requestValidator: CreateIngredientByIdRequestValidator,
+                requestValidator: CreateIngredientRequestValidator,
                 middlewares: []
             },
             update: {

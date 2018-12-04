@@ -1,22 +1,22 @@
 import Rule from "~/porto/Ship/Abstracts/Rule";
 import NotFoundException from "~/porto/Ship/Exceptions/NotFoundException";
-import sequelize from "~/helpers/Sequelize";
+import Sequelize from "~/helpers/Sequelize";
 
 class ExistsRule extends Rule {
-
-    constructor (tableName) {
+    constructor (tableName, columnName) {
         super();
         this.defaultException = NotFoundException;
         this.tableName = tableName;
+        this.columnName = columnName;
     }
 
-    check (fieldName, params) {
-        let query = 'SELECT ' + fieldName + ' FROM ' + this.tableName + " WHERE " + fieldName + " = \'" + params[fieldName] + "\';";
-        return sequelize.query(query, {raw: true}).spread((result) => {
+    check (fieldName, requestParams) {
+        let query = 'SELECT ' + this.columnName + ' FROM ' + this.tableName + " WHERE " + this.columnName + " = \'" + requestParams[fieldName] + "\';";
+        return Sequelize.query(query, {type: Sequelize.QueryTypes.SELECT}).then((result) => {
             if (result.length === 0) {
-                return false;
+                return Promise.reject();
             }
-            return true;
+            return Promise.resolve();
         })
     }
 }
