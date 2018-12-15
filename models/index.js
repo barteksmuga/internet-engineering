@@ -7,6 +7,7 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'local';
 const config = require(__dirname + '/../config/Database/database.json')[env];
 const db = {};
+import Porto from '~/porto/Ship/Porto';
 
 let sequelize;
 if (config.use_env_variable) {
@@ -22,7 +23,7 @@ const sortDir = containerDir => {
     const sortPath = dir => {
         dir = path.join(dir, 'Models');
         fs.readdirSync(dir)
-            .filter(file => (file.indexOf(".") !== 0) && (file !== "index.js"))
+            .filter(file => file.indexOf(".") !== 0)
             .forEach((res) => {
                 const filePath = path.join(dir, res);
                 if (CheckFile(filePath)) {
@@ -39,9 +40,7 @@ const sortDir = containerDir => {
         i += 1;
     } while (i < folders.length);
 };
-const containerRootDirectory = path.resolve(__dirname, '../Containers');
-const containerDirectories = fs.readdirSync(containerRootDirectory).map(containerName => path.join(containerRootDirectory, containerName));
-containerDirectories.forEach(path => sortDir(path));
+Porto.getContainerDirectories().forEach(path => sortDir(path));
 files.forEach((file) => {
     const model = sequelize.import(file);
     db[model.name] = model;

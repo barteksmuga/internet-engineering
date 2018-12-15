@@ -18,54 +18,59 @@ import RemoveCategoryByIdTransferObject from '~/porto/Containers/Category/Transf
 import TestMiddleware from '~/porto/Containers/Category/Middlewares/Test';
 
 class CategoryController extends Controller {
-    static getList (req, res) {
-        let transferObject = new GetCategoryListTransferObject(req.validatedParams);
+    static async getList (request, response) {
+        let transferObject = new GetCategoryListTransferObject(request.validatedParams);
         let action = new GetCategoryListAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data);
-        }).catch(exception => {
-            Response.error(res, exception);
-        });
+        try {
+            const data = await action.run();
+            Response.success(response, data);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
-    static get (req, res) {
-        let transferObject = new GetCategoryByIdTransferObject(req.validatedParams);
+    static async get (request, response) {
+        let transferObject = new GetCategoryByIdTransferObject(request.validatedParams);
         let action = new GetCategoryByIdAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data);
-        }).catch(exception => {
-            Response.error(res, exception);
-        });
+        try {
+            const data = await action.run();
+            Response.success(response, data);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
-    static create (req, res) {
-        let transferObject = new CreateCategoryTransferObject(req.validatedParams);
+    static async create (request, response) {
+        let transferObject = new CreateCategoryTransferObject(request.validatedParams);
         let action = new CreateCategoryAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data, 201);
-        }).catch(exception => {
-            Response.error(res, exception);
-        });
+        try {
+            const data = await action.run();
+            Response.success(response, data, 201);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
-    static update (req, res) {
-        let transferObject = new UpdateCategoryByIdTransferObject(req.validatedParams);
+    static async update (request, response) {
+        let transferObject = new UpdateCategoryByIdTransferObject(request.validatedParams);
         let action = new UpdateCategoryByIdAction(transferObject);
-        action.run().then(() => {
-            Response.success(res, null, 204);
-        }).catch(exception => {
-            Response.error(res, exception);
-        });
+        try {
+            await action.run();
+            Response.success(response, null, 204);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
-    static remove (req, res) {
-        let transferObject = new RemoveCategoryByIdTransferObject(req.validatedParams);
+    static async remove (request, response) {
+        let transferObject = new RemoveCategoryByIdTransferObject(request.validatedParams);
         let action = new RemoveCategoryByIdAction(transferObject);
-        action.run().then(() => {
-            Response.success(res, null, 204);
-        }).catch(exception => {
-            Response.error(res, exception);
-        });
+        try {
+            await action.run();
+            Response.success(response, null, 204);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
     static get routeMap () {

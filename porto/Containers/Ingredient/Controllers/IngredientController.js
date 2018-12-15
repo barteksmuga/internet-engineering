@@ -17,54 +17,61 @@ import RemoveIngredientByIdAction from "../Actions/RemoveIngredientByIdAction";
 import Response from '~/porto/Ship/Response/Response';
 
 class IngredientController extends Controller {
-    static getList (req, res) {
-        let transferObject = new GetIngredientListTransferObject(req.validatedParams);
+    static async getList (request, response) {
+        let transferObject = new GetIngredientListTransferObject(request.validatedParams);
         let action = new GetIngredientListAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data);
-        }).catch(error => {
-            Response.error(res, error)
-        })
+        try {
+            const data = await action.run();
+            console.log(data);
+            Response.success(response, data);
+        } catch (exception) {
+            console.log(exception);
+            Response.error(response, exception);
+        }
     }
 
-    static get (req, res) {
-        let transferObject = new GetIngredientByIdTransferObject(req.validatedParams);
+    static async get (request, response) {
+        let transferObject = new GetIngredientByIdTransferObject(request.validatedParams);
         let action = new GetIngredientByIdAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data);
-        }).catch(error => {
-            Response.error(res, error);
-        })
+        try {
+            const data = await action.run();
+            Response.success(response, data);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
-    static create (req, res) {
-        let transferObject = new CreateIngredientTransferObject(req.validatedParams);
+    static async create (request, response) {
+        let transferObject = new CreateIngredientTransferObject(request.validatedParams);
         let action = new CreateIngredientAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data);
-        }).catch(error => {
-            Response.error(res, error);
-        })
+        try {
+            const data = await action.run();
+            Response.success(response, data);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
-    static update (req, res) {
-        let transferObject = new UpdateIngredientByIdTransferObject(req.validatedParams);
+    static async update (request, response) {
+        let transferObject = new UpdateIngredientByIdTransferObject(request.validatedParams);
         let action = new UpdateIngredientByIdAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data);
-        }).catch(error => {
-            Response.error(res, error);
-        })
+        try {
+            const data = await action.run();
+            Response.success(response, data);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
-    static remove (req, res) {
-        let transferObject = new RemoveIngredientByIdTransferObject(req.validatedParams);
+    static async remove (request, response) {
+        let transferObject = new RemoveIngredientByIdTransferObject(request.validatedParams);
         let action = new RemoveIngredientByIdAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data);
-        }).catch(error => {
-            Response.error(res, error);
-        })
+        try {
+            const data = await action.run();
+            Response.success(response, data);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
     static get routeMap () {

@@ -1,5 +1,6 @@
 import Rule from "~/porto/Ship/Abstracts/Rule";
 import RequiredException from "~/porto/Ship/Exceptions/RequiredException";
+import {isSet} from "~/porto/Ship/Helpers/IsSet";
 
 class RequiredRule extends Rule {
     constructor () {
@@ -7,13 +8,8 @@ class RequiredRule extends Rule {
         this.defaultException = RequiredException;
     }
 
-    check (fieldName, requestParams) {
-        return new Promise((resolve, reject) => {
-            if (!requestParams[fieldName] || requestParams[fieldName].length === 0) {
-                reject();
-            }
-            resolve();
-        });
+    async check (fieldName, requestParams) {
+        return isSet(requestParams[fieldName]);
     }
 }
 

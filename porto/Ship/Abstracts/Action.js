@@ -6,30 +6,8 @@ class Action {
         this.transferObject = transferObject;
     }
 
-    /**
-     * @returns {Promise<~__process, Exception>}
-     */
-    run () {
-        return new Promise((resolve, reject) => {
-            try {
-                let result = this.__process(this.transferObject);
-                if (result instanceof Promise) {
-                    result
-                        .then(data => resolve(data))
-                        .catch(data => reject(data));
-                    return;
-                }
-                resolve(result);
-            } catch (e) {
-                reject(e);
-            }
-        });
+    async run () {
     }
-
-    /**
-     * @private
-     */
-    __process (transferObject) {}
 }
 
 export default Action;

@@ -1,25 +1,19 @@
 import Rule from "~/porto/Ship/Abstracts/Rule";
-import sequelize from "~/helpers/Sequelize";
-import ExistsException from '~/porto/Ship/Exceptions/ExistsException';
+import Sequelize from "~/helpers/Sequelize";
+import ResourceAlreadyExistsException from '~/porto/Ship/Exceptions/ResourceAlreadyExistsException';
 
 class UniqueRule extends Rule {
-
     constructor (tableName, columnName) {
         super();
-        this.defaultException = ExistsException;
+        this.defaultException = ResourceAlreadyExistsException;
         this.tableName = tableName;
         this.columnName = columnName;
     }
 
-    check (fieldName, requestParams) {
+    async check (fieldName, requestParams) {
         let query = 'SELECT ' + this.columnName + ' FROM ' + this.tableName + " WHERE " + this.columnName + " = \'" + requestParams[fieldName] + "\';";
-        return sequelize.query(query, {raw: true}).then((result) => {
-            if (result.length === 0) {
-                return Promise.resolve();
-            }
-            return Promise.reject();
-        });
-
+        const result = await Sequelize.query(query, {raw: true});
+        return result === 0;
     }
 }
 

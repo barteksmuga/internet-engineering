@@ -5,7 +5,7 @@ import path from 'path';
 import Porto from '~/porto/Ship/Porto';
 
 class LoggedGuard extends Guard {
-    check (request) {
+    async check (request) {
         let publicKey = fs.readFileSync(path.resolve(Porto.rootDirectory, '.jwt-public.pem'), 'utf8');
         let token = request.get('authorization');
         if (!token) {

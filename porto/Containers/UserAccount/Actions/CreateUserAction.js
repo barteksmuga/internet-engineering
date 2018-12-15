@@ -4,15 +4,12 @@ import bcrypt from 'bcrypt';
 
 class CreateUserAction extends Action {
     /**
-     * @param transferObject
-     * @return {Promise<User>}
-     * @private
+     *
+     * @return {Promise<void>}
      */
-    __process (transferObject) {
-        return bcrypt.hash(transferObject.dataSet.password, parseInt(process.env.BCRYPT_SALT_ROUNDS)).then(hash => {
-            transferObject.dataSet.password = hash;
-            return User.create(transferObject.dataSet);
-        });
+    async run () {
+        this.transferObject.dataSet.password = await bcrypt.hash(this.transferObject.dataSet.password, parseInt(process.env.BCRYPT_SALT_ROUNDS));
+        return await User.create(this.transferObject.dataSet);
     }
 }
 

@@ -1,8 +1,6 @@
 class Rule {
-    check (fieldName, requestParams) {
-        return new Promise((resolve, reject) => {
-            resolve();
-        });
+    async check (fieldName, requestParams) {
+        return true;
     }
 }
 

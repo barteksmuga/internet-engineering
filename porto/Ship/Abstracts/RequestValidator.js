@@ -1,49 +1,67 @@
 import UnauthorizedException from '~/porto/Ship/Exceptions/UnauthorizedException';
+import RequestValidationException from '~/porto/Ship/Exceptions/RequestValidationException';
 
 class RequestValidator {
-    process (request) {
+    async process (request) {
         this.request = request;
         this.validatedParams = {};
-        this.authorize();
-        return this.validate();
+        await this.authorize();
+        await this.validate();
     }
 
-    authorize () {
+    async authorize () {
         if (this.guards.length === 0) {
             return;
         }
         let passed = false;
-        this.guards.forEach(guardGroup => {
+        for (let i = 0; i < this.guards.length; ++i) {
             let checks = [];
-            guardGroup.forEach(guard => {
-                checks.push(guard.check(this.request));
-            });
+            for (let j = 0; j < this.guards[i].length; ++j) {
+                checks.push(await this.guards[i][j].check(this.request));
+            }
             if (checks.indexOf(false) === -1) {
                 passed = true;
+                break;
             }
-        });
+        }
         if (!passed) {
             throw new UnauthorizedException();
         }
     }
 
-    validate () {
+    async validate () {
         if (this.rules.length === 0) {
             return;
         }
         let requestParams = Object.assign({}, this.request.query, this.request.params, this.request.body);
-        let promises = [];
-        Object.entries(this.rules).forEach(([fieldName, rules]) => {
-            rules.forEach(rule => {
-                if (rule.rule) {
-                    promises.push(this.validateFieldWithCustomException(rule.rule, fieldName, requestParams, rule.exception));
-                } else {
-                    promises.push(this.validateFieldWithDefaultException(rule, fieldName, requestParams));
+        let exceptions = {};
+        let firstException, singleError = false, failure = false;
+        for (let field in this.rules) {
+            if (!exceptions[field]) {
+                exceptions[field] = [];
+            }
+            for (let rule of this.rules[field]) {
+                try {
+                    await this.constructor.validateField(rule, field, requestParams);
+                } catch (exception) {
+                    failure = true;
+                    exceptions[field].push(exception.errorKey);
+                    if (firstException) {
+                        singleError = false;
+                    } else {
+                        firstException = exception;
+                        singleError = true;
+                    }
                 }
-            });
-            this.validatedParams[fieldName] = requestParams[fieldName];
-        });
-        return Promise.all(promises);
+            }
+            this.validatedParams[field] = requestParams[field];
+        }
+        if (singleError) {
+            throw firstException;
+        }
+        if (failure) {
+            throw new RequestValidationException(exceptions);
+        }
     }
 
     get validatedDataObject () {
@@ -58,16 +76,19 @@ class RequestValidator {
         return {};
     }
 
-    validateFieldWithDefaultException (rule, fieldName, requestParams) {
-        return rule.check(fieldName, requestParams).catch(() => {
+    static async validateField (rule, fieldName, requestParams) {
+        let check;
+        if (rule.rule) {
+            check = await rule.rule.check(fieldName, requestParams);
+        } else {
+            check = await rule.check(fieldName, requestParams);
+        }
+        if (!check) {
+            if (rule.rule) {
+                throw new rule.exception.class(rule.exception.message, rule.exception.status || 422, rule.exception.payload || {});
+            }
             throw new rule.defaultException();
-        });
-    }
-
-    validateFieldWithCustomException (rule, fieldName, requestParams, exceptionData) {
-        return rule.check(fieldName, requestParams).catch(() => {
-            throw new exceptionData.class(exceptionData.message, exceptionData.status || 422, exceptionData.payload || '');
-        });
+        }
     }
 }
 

@@ -3,12 +3,11 @@ import Ingredient from "../Models/Ingredient";
 
 class CreateIngredientAction extends Action {
     /**
-     * @param {CreateIngredientTransferObject} transferObject
-     * @return {Promise<array>}
-     * @private
+     *
+     * @return {Promise<void>}
      */
-    __process (transferObject) {
-        return Ingredient.create(transferObject.dataSet);
+    async run () {
+        return await Ingredient.create(this.transferObject.dataSet);
     }
 }
 

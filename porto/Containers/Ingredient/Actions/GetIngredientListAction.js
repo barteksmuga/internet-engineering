@@ -3,13 +3,12 @@ import Ingredient from "../Models/Ingredient";
 
 class GetIngredientListAction extends Action {
     /**
-     * @param {GetIngredientListAction} transferObject
-     * @return {Promise<array>}
-     * @private
+     *
+     * @return {Promise<Array<Model>>}
      */
-    __process (transferObject) {
-        return Ingredient.findAll({
-            where: transferObject.dataSet
+    async run () {
+        return await Ingredient.findAll({
+            where: this.transferObject.dataSet
         });
     }
 }

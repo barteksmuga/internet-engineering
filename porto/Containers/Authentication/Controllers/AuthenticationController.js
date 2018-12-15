@@ -5,14 +5,15 @@ import LoginUserAction from '~/porto/Containers/Authentication/Actions/LoginUser
 import LoginUserTransferObject from '~/porto/Containers/Authentication/TransferObjects/LoginUserTransferObject';
 
 class AuthenticationController extends Controller {
-    static login (request, response) {
+    static async login (request, response) {
         let transferObject = new LoginUserTransferObject(request.validatedParams);
         let action = new LoginUserAction(transferObject);
-        action.run().then(data => {
+        try {
+            const data = await action.run();
             Response.success(response, data);
-        }).catch(exception => {
+        } catch (exception) {
             Response.error(response, exception);
-        });
+        }
     }
 
     static get routeMap () {

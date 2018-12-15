@@ -4,20 +4,18 @@ import NotFoundException from "../../../Ship/Exceptions/NotFoundException";
 
 class RemoveIngredientByIdAction extends Action {
     /**
-     * @param {RemoveIngredientByIdTransferObject} transferObject
-     * @return {Promise<array>}
-     * @private
+     *
+     * @return {Promise<void>}
      */
-    __process (transferObject) {
-        return Ingredient.destroy({
+    async run () {
+        const result = await Ingredient.destroy({
             where: {
-                id: transferObject.get('id')
-            }
-        }).then(result => {
-            if (result === 0) {
-                throw new NotFoundException();
+                id: this.transferObject.get('id')
             }
         });
+        if (result === 0) {
+            throw new NotFoundException();
+        }
     }
 }
 

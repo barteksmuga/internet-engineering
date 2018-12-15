@@ -4,22 +4,20 @@ import NotFoundException from "../../../Ship/Exceptions/NotFoundException";
 
 class UpdateIngredientByIdAction extends Action {
     /**
-     * @param {UpdateIngredientByIdTransferObject} transferObject
-     * @return {Promise<array>}
-     * @private
+     *
+     * @return {Promise<void>}
      */
-    __process (transferObject) {
-        let params = Object.assign({}, transferObject.dataSet);
+    async run () {
+        let params = Object.assign({}, this.transferObject.dataSet);
         delete params.id;
-        return Ingredient.update(params, {
+        const result = await Ingredient.update(params, {
             where: {
-                id: transferObject.get('id')
-            }
-        }).then(result => {
-            if (result[0] === 0) {
-                throw new NotFoundException();
+                id: this.transferObject.get('id')
             }
         });
+        if (result[0] === 0) {
+            throw new NotFoundException();
+        }
     }
 }
 

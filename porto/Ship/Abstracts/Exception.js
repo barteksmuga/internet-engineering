@@ -3,6 +3,7 @@ class Exception {
         this.errorKey = errorKey || '';
         this.status = status || 500;
         this.payload = payload || {};
+        this.stack = (new Error).stack;
     }
 }
 

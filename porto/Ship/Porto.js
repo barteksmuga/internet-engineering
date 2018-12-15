@@ -3,6 +3,7 @@ import express from 'express';
 import path from 'path';
 import ValidateRequestMiddleware from '~/porto/Ship/Middlewares/ValidateRequest';
 import appRootPath from 'app-root-path';
+import Sequelize from '~/helpers/Sequelize';
 
 class Porto {
     /**
@@ -50,6 +51,40 @@ class Porto {
 
     static get rootDirectory () {
         return appRootPath.path;
+    }
+
+    static loadModels () {
+        const files = [];
+        const sortDir = containerDir => {
+            const folders = [];
+            const CheckFile = filePath => (fs.statSync(filePath).isFile());
+            const sortPath = dir => {
+                dir = path.join(dir, 'Models');
+                if (!fs.existsSync(dir)) {
+                    return;
+                }
+                fs.readdirSync(dir)
+                    .filter(file => file.indexOf(".") !== 0)
+                    .forEach((res) => {
+                        const filePath = path.join(dir, res);
+                        if (CheckFile(filePath)) {
+                            files.push(filePath);
+                        } else {
+                            folders.push(filePath);
+                        }
+                    });
+            };
+            folders.push(containerDir);
+            let i = 0;
+            do {
+                sortPath(folders[i]);
+                i += 1;
+            } while (i < folders.length);
+        };
+        Porto.getContainerDirectories().forEach(path => sortDir(path));
+        files.forEach((file) => {
+            require(`${file}`);
+        });
     }
 }
 

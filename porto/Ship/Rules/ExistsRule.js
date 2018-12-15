@@ -10,14 +10,10 @@ class ExistsRule extends Rule {
         this.columnName = columnName;
     }
 
-    check (fieldName, requestParams) {
+    async check (fieldName, requestParams) {
         let query = 'SELECT ' + this.columnName + ' FROM ' + this.tableName + " WHERE " + this.columnName + " = \'" + requestParams[fieldName] + "\';";
-        return Sequelize.query(query, {type: Sequelize.QueryTypes.SELECT}).then((result) => {
-            if (result.length === 0) {
-                return Promise.reject();
-            }
-            return Promise.resolve();
-        })
+        const result = await Sequelize.query(query, {type: Sequelize.QueryTypes.SELECT});
+        return result.length !== 0;
     }
 }
 

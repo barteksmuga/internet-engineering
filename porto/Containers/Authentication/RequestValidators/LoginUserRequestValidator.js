@@ -1,7 +1,7 @@
 import RequestValidator from '~/porto/Ship/Abstracts/RequestValidator';
 import RequiredRule from "~/porto/Ship/Rules/RequiredRule";
 import IsEmailRule from "~/porto/Ship/Rules/IsEmailRule";
-import InvalidException from "~/porto/Ship/Exceptions/InvalidException";
+import InvalidEmailException from "~/porto/Ship/Exceptions/InvalidEmailException";
 
 class LoginUserRequestValidator extends RequestValidator {
     get rules () {
@@ -9,7 +9,7 @@ class LoginUserRequestValidator extends RequestValidator {
             email: [new RequiredRule(), {
                 rule: new IsEmailRule(),
                 exception: {
-                    class: InvalidException,
+                    class: InvalidEmailException,
                     message: 'invalidEmail',
                 }
             }],

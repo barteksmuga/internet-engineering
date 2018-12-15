@@ -1,22 +1,20 @@
 import Action from '~/porto/Ship/Abstracts/Action';
-import Ingredient from "../Models/Ingredient";
-import NotFoundException from "../../../Ship/Exceptions/NotFoundException";
+import Ingredient from "~/porto/Containers/Ingredient/Models/Ingredient";
+import NotFoundException from "~/porto/Ship/Exceptions/NotFoundException";
 
 class GetIngredientByIdAction extends Action {
     /**
-     * @param {GetIngredientByIdAction} transferObject
-     * @return {Promise<array>}
-     * @private
+     *
+     * @return {Promise<Model>}
      */
-    __process (transferObject) {
-        return Ingredient.findOne({
-            where: transferObject.dataSet
-        }).then(model => {
-            if (model) {
-                return model;
-            }
-            throw new NotFoundException();
+    async run () {
+        const ingredient = await Ingredient.findOne({
+            where: this.transferObject.dataSet
         });
+        if (ingredient) {
+            return ingredient;
+        }
+        throw new NotFoundException();
     }
 }
 
