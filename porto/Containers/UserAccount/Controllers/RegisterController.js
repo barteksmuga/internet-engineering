@@ -5,14 +5,15 @@ import CreateUserAction from '~/porto/Containers/UserAccount/Actions/CreateUserA
 import CreateUserTransferObject from '~/porto/Containers/UserAccount/TransferObjects/CreateUserTransferObject';
 
 class RegisterController extends Controller {
-    static register (request, response) {
+    static async register (request, response) {
         let transferObject = new CreateUserTransferObject(request.validatedParams);
         let action = new CreateUserAction(transferObject);
-        action.run().then(data => {
+        try {
+            const data = await action.run();
             Response.success(response, data);
-        }).catch(exception => {
+        } catch (exception) {
             Response.error(response, exception);
-        });
+        }
     }
 
     static get routeMap () {

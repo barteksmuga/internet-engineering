@@ -1,16 +1,14 @@
 import Action from '~/porto/Ship/Abstracts/Action';
-import GetUserListTransferObject from '~/porto/Containers/User/TransferObjects/GetUserListTransferObject';
 import User from '~/porto/Containers/User/Models/User';
 
 class GetUserListAction extends Action {
     /**
-     * @param {GetUserListTransferObject} transferObject
-     * @return {Promise<array>}
-     * @private
+     *
+     * @return {Promise<Array<Model>>}
      */
-    __process (transferObject) {
-        return User.findAll({
-            where: transferObject.dataSet
+    async run () {
+        return await User.findAll({
+            where: this.transferObject.dataSet
         });
     }
 }

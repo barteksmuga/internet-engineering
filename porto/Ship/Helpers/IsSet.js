@@ -1,0 +1,1 @@
+export const isSet = o => o !== undefined && o !== null && o !== '';

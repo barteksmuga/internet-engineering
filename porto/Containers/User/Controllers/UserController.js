@@ -5,14 +5,15 @@ import RegisterUserRequestValidator from '~/porto/Containers/User/RequestValidat
 import GetUserListTransferObject from '~/porto/Containers/User/TransferObjects/GetUserListTransferObject';
 
 class UserController extends Controller {
-    static getList (request, response) {
+    static async getList (request, response) {
         let transferObject = new GetUserListTransferObject(request.validatedParams);
         let action = new GetUserListAction(transferObject);
-        action.run().then(data => {
+        try {
+            const data = await action.run();
             Response.success(response, data);
-        }).catch(exception => {
+        } catch (exception) {
             Response.error(response, exception);
-        });
+        }
     }
 
     static get routeMap () {

@@ -1,5 +1,5 @@
 class Guard {
-    check (request) {
+    async check (request) {
         return true;
     }
 }

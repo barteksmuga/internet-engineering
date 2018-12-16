@@ -4,6 +4,7 @@ class Response {
     }
 
     static error (response, exception) {
+        console.error('response error: ', exception);
         response.status(exception.status).send({
             errorKey: exception.errorKey,
             payload: exception.payload

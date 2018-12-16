@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
+Porto.loadModels();
 let routes = Porto.getRoutes();
 Object.keys(routes).forEach(key => app.use(key, routes[key]));
 

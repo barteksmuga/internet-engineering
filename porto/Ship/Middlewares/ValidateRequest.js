@@ -8,13 +8,14 @@ class ValidateRequest extends Middleware {
         this.validator = new requestValidatorClass();
     }
 
-    handle (request, response, next) {
+    async handle (request, response, next) {
         try {
-            this.validator.process(request);
-            request.validatedParams = this.validator.getValidatedDataObject();
+            await this.validator.process(request);
+            request.validatedParams = this.validator.validatedDataObject;
         } catch (exception) {
             if (exception instanceof Exception) {
                 Response.error(response, exception);
+                return;
             } else {
                 throw exception;
             }

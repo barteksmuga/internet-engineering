@@ -1,5 +1,5 @@
 import express from 'express';
-import RecipeController from '~/porto/Containers/Recipe/_Controllers/RecipeController';
+import RecipeController from '~/porto/Containers/Recipe/Controllers/RecipeController';
 var router = express.Router();
 
 router.get('/', RecipeController.getList);
