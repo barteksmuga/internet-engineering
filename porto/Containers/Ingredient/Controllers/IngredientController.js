@@ -22,10 +22,8 @@ class IngredientController extends Controller {
         let action = new GetIngredientListAction(transferObject);
         try {
             const data = await action.run();
-            console.log(data);
             Response.success(response, data);
         } catch (exception) {
-            console.log(exception);
             Response.error(response, exception);
         }
     }

@@ -4,7 +4,6 @@ import NotFoundException from '~/porto/Ship/Exceptions/NotFoundException';
 
 class GetCategoryByIdAction extends Action {
     /**
-     *
      * @return {Promise<Model>}
      */
     async run () {

@@ -54,7 +54,6 @@ class HasPermissionGuard extends Guard {
             'scope': this.config.scope,
             'scopeId': this.config.scopeId,
         });
-        console.log(userRoles.pluck('role.permissions.name'));
         if (searchedPermission !== null) {
             return true;
         }

@@ -1,7 +1,11 @@
 import TransferObject from "~/porto/Ship/Abstracts/TransferObject";
 
 /**
- * @property {Object} dataSet
+ * @property {String} dataSet.name
+ * @property {Array} dataSet.ingredients
+ * @property {Number} dataSet.ingredients.*
+ * @property {Array} dataSet.categories
+ * @property {Number} dataSet.categories.*
  */
 class GetRecipeListTransferObject extends TransferObject {
 

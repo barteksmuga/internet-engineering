@@ -14,58 +14,62 @@ import RemoveRecipeByIdAction from "~/porto/Containers/Recipe/Actions/RemoveReci
 import CreateRecipeTransferObject from "~/porto/Containers/Recipe/TransferObjects/CreateRecipeTransferObject";
 import UpdateRecipeByIdTransferObject from "~/porto/Containers/Recipe/TransferObjects/UpdateRecipeByIdTransferObject";
 import RemoveRecipeByIdTransferObject from "~/porto/Containers/Recipe/TransferObjects/RemoveRecipeByIdTransferObject";
+import Response from '~/porto/Ship/Response/Response';
 
-//TODO TEST ENDOPOINTS!!
 class RecipeController extends Controller {
-    static getList (req, res) {
-        let transferObject = new GetRecipeListTransferObject(req.validatedParams);
+    static async getList (request, response) {
+        let transferObject = new GetRecipeListTransferObject(request.validatedParams);
         let action = new GetRecipeListAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data);
-        }).catch(error => {
-            console.log(error, res);
-            Response.error(res, error);
-        });
+        try {
+            const data = await action.run();
+            Response.success(response, data);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
-    static get (req, res) {
-        let transferObject = new GetRecipeByIdTransferObject(req.validatedParams);
+    static async get (request, response) {
+        let transferObject = new GetRecipeByIdTransferObject(request.validatedParams);
         let action = new GetRecipeByIdAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data);
-        }).catch(error => {
-            Response.error(res, error);
-        });
+        try {
+            const data = await action.run();
+            Response.success(response, data);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
-    static create (req, res) {
-        let transferObject = new CreateRecipeTransferObject(req.validatedParams);
+    static async create (request, response) {
+        let transferObject = new CreateRecipeTransferObject(request.validatedParams);
         let action = new CreateRecipeAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data);
-        }).catch(error => {
-            Response.error(res, error);
-        });
+        try {
+            const data = await action.run();
+            Response.success(response, data);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
-    static update (req, res) {
-        let transferObject = new UpdateRecipeByIdTransferObject(req.validatedParams);
+    static async update (request, response) {
+        let transferObject = new UpdateRecipeByIdTransferObject(request.validatedParams);
         let action = new UpdateRecipeByIdAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data);
-        }).catch(error => {
-            Response.error(res, error);
-        });
+        try {
+            const data = await action.run();
+            Response.success(response, data);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
-    static remove (req, res) {
-        let transferObject = new RemoveRecipeByIdTransferObject(req.validatedParams);
+    static async remove (request, response) {
+        let transferObject = new RemoveRecipeByIdTransferObject(request.validatedParams);
         let action = new RemoveRecipeByIdAction(transferObject);
-        action.run().then(data => {
-            Response.success(res, data);
-        }).catch(error => {
-            Response.error(res, error);
-        });
+        try {
+            const data = await action.run();
+            Response.success(response, data);
+        } catch (exception) {
+            Response.error(response, exception);
+        }
     }
 
     static get routeMap () {

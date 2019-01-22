@@ -8,9 +8,9 @@ class CreateRecipeRequestValidator extends RequestValidator {
         return [
             [
                 new LoggedGuard(),
-                new HasPermissionGuard({
-                    permission: 'recipes@create'
-                })
+                // new HasPermissionGuard({
+                //     permission: 'recipes@create'
+                // })
             ]
         ];
     }
@@ -18,8 +18,10 @@ class CreateRecipeRequestValidator extends RequestValidator {
     get rules () {
         return {
             name: [new RequiredRule()],
-            author_id: [new RequiredRule()],
-            preparing_method: [new RequiredRule()]
+            authorId: [new RequiredRule()],
+            preparingMethod: [new RequiredRule()],
+            ingredients: [],
+            categories: []
         }
     }
 }

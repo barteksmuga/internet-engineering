@@ -11,6 +11,7 @@ class LoggedGuard extends Guard {
         if (!token) {
             return false;
         }
+        token = token.split(' ')[1];
         try {
             let result = jwt.verify(token, publicKey, {
                 algorithm: process.env.JWT_ALGORITHM

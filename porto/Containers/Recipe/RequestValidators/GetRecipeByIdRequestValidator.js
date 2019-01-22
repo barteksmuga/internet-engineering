@@ -9,9 +9,9 @@ class GetRecipeByIdRequestValidator extends RequestValidator {
         return [
             [
                 new LoggedGuard(),
-                new HasPermissionGuard({
-                    permission: 'recipes@read'
-                })
+                // new HasPermissionGuard({
+                //     permission: 'recipes@read'
+                // })
             ]
         ];
     }
@@ -20,7 +20,7 @@ class GetRecipeByIdRequestValidator extends RequestValidator {
         return {
             id: [
                 new RequiredRule(),
-                new ExistsRule()
+                new ExistsRule('recipes', 'id')
             ]
         }
     }

@@ -1,7 +1,6 @@
 import RequestValidator from '~/porto/Ship/Abstracts/RequestValidator';
 import LoggedGuard from '~/porto/Ship/Guards/LoggedGuard';
 import RequiredRule from "~/porto/Ship/Rules/RequiredRule";
-import HasPermissionGuard from "~/porto/Ship/Guards/HasPermissionGuard";
 import ExistsRule from "~/porto/Ship/Rules/ExistsRule";
 
 class RemoveRecipeByIdRequestValidator extends RequestValidator {
@@ -9,9 +8,9 @@ class RemoveRecipeByIdRequestValidator extends RequestValidator {
         return [
             [
                 new LoggedGuard(),
-                new HasPermissionGuard({
-                    permission: 'recipes@delete'
-                })
+                // new HasPermissionGuard({
+                //     permission: 'recipes@delete'
+                // })
             ]
         ];
     }
@@ -20,7 +19,7 @@ class RemoveRecipeByIdRequestValidator extends RequestValidator {
         return {
             id: [
                 new RequiredRule(),
-                new ExistsRule()
+                new ExistsRule('recipes', 'id')
             ]
         }
     }

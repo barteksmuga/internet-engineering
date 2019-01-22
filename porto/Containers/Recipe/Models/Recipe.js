@@ -1,4 +1,5 @@
 import seq from '~/helpers/Sequelize';
+import Category from "~/porto/Containers/Category/Models/Category";
 
 const Recipe = seq.define('recipes', {
         id: {
