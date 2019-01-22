@@ -6,7 +6,6 @@ class GetIngredientListRequestValidator extends RequestValidator {
     get guards () {
         return [
             [
-                new LoggedGuard(),
                 new HasPermissionGuard({
                     permission: 'ingredients@read',
                 })

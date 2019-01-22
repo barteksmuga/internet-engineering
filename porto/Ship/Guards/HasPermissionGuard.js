@@ -24,7 +24,10 @@ class HasPermissionGuard extends Guard {
     async check (request) {
         if (!request.user && !this.config.operatorField) {
             let loggedGuard = new LoggedGuard();
-            await loggedGuard.check(request);
+            const result = await loggedGuard.check(request);
+            if (!result) {
+                return false;
+            }
         }
         let userWhere = {};
         if (this.config.operatorField) {

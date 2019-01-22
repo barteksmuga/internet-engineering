@@ -7,9 +7,10 @@ class GetRecipeListRequestValidator extends RequestValidator {
         return [
             [
                 new LoggedGuard(),
-                new HasPermissionGuard({
-                    permission: 'recipes@read'
-                })
+                //@TODO PERMISSIONY (SEEDER)
+                // new HasPermissionGuard({
+                //     permission: 'recipes@read'
+                // })
             ]
         ];
     }
