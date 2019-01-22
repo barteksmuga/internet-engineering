@@ -17,7 +17,7 @@ const Recipe = seq.define('recipes', {
         },
         preparingMethod: {
             allowNull: false,
-            type: seq.Sequelize.STRING
+            type: seq.Sequelize.TEXT
         }
     }
 );

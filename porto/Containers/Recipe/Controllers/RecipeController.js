@@ -23,6 +23,7 @@ class RecipeController extends Controller {
         action.run().then(data => {
             Response.success(res, data);
         }).catch(error => {
+            console.log(error, res);
             Response.error(res, error);
         });
     }
