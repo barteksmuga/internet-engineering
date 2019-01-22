@@ -6,7 +6,16 @@ import UpdateRecipeByIdRequestValidator from "~/porto/Containers/Recipe/RequestV
 import RemoveRecipeByIdRequestValidator from "~/porto/Containers/Recipe/RequestValidators/RemoveRecipeByIdRequestValidator";
 import GetRecipeListTransferObject from "~/porto/Containers/Recipe/TransferObjects/GetRecipeListTransferObject";
 import GetRecipeListAction from "~/porto/Containers/Recipe/Actions/GetRecipeListAction";
+import GetRecipeByIdTransferObject from "~/porto/Containers/Recipe/TransferObjects/GetRecipeByIdTransferObject";
+import GetRecipeByIdAction from "~/porto/Containers/Recipe/Actions/GetRecipeByIdAction";
+import CreateRecipeAction from "~/porto/Containers/Recipe/Actions/CreateRecipeAction";
+import UpdateRecipeByIdAction from "~/porto/Containers/Recipe/Actions/UpdateRecipeByIdAction";
+import RemoveRecipeByIdAction from "~/porto/Containers/Recipe/Actions/RemoveRecipeByIdAction";
+import CreateRecipeTransferObject from "~/porto/Containers/Recipe/TransferObjects/CreateRecipeTransferObject";
+import UpdateRecipeByIdTransferObject from "~/porto/Containers/Recipe/TransferObjects/UpdateRecipeByIdTransferObject";
+import RemoveRecipeByIdTransferObject from "~/porto/Containers/Recipe/TransferObjects/RemoveRecipeByIdTransferObject";
 
+//TODO TEST ENDOPOINTS!!
 class RecipeController extends Controller {
     static getList (req, res) {
         let transferObject = new GetRecipeListTransferObject(req.validatedParams);
