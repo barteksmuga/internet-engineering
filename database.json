@@ -1,9 +1,9 @@
 {
     "defaultEnv": "local",
     "local": {
-        "username": "bsmuga",
-        "password": "zAswQ1324",
+        "username": "admin",
+        "password": "admin",
         "driver": "mysql",
-        "database": "jedzonko"
+        "database": "db"
     }
 }
