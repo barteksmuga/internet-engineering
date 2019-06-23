@@ -67,3 +67,4 @@ typings/
 .idea
 
 config/Database/database.json
+database.json
